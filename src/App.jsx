@@ -14,7 +14,7 @@ import proposalImg from "./assets/proposal  1-1-2026.png";
 const MOCK_WISHES = [
   {
     id: "wish_1",
-    guest_name: "Moheb Ahmed",
+    guest_name: "Eisawy Salem",
     message:
       "Congratulations! Wishing you a lifetime of love and happiness together.",
   },
@@ -26,9 +26,15 @@ const MOCK_WISHES = [
   },
   {
     id: "wish_3",
-    guest_name: "Test Guest",
+    guest_name: "Mohamed",
     message:
       "Congratulations to the beautiful couple! So happy to celebrate with you.",
+  },
+  {
+    id: "wish_4",
+    guest_name: "Kamel Elmasry",
+    message:
+      "ألف مبروك للعروسين، مع تمنياتي لكم بحياة زوجية سعيدة ومستقبل مشرق مليء بالحب والبهجة.",
   },
 ];
 
