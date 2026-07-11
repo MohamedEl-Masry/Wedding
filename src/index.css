@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent-gold: #c5a880;
+  --color-accent-gold-dark: #b59870;
+  --color-accent-gold-light: #dcd0bc;
+  --color-invitation-bg: #fdfbf7;
+  --color-invitation-bg-dark: #f8f6f0;
+  --color-invitation-text: #1a1a1a;
+  --color-invitation-muted: #6b6b6b;
+
+  --font-cinzel: "Cinzel", serif;
+  --font-cairo: "Cairo", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-script: "Great Vibes", cursive;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5a88060;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a880a0;
+}
+
+/* Utility Font Classes */
+.font-cinzel {
+  font-family: "Cinzel", serif;
+}
+
+.font-cairo {
+  font-family: "Cairo", sans-serif;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+.font-script {
+  font-family: "Great Vibes", cursive;
+}
+
+/* Snowflake/Ambient particles keyframe */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-20px) translateX(0);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(50vh) translateX(20px);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+}
+
+.animate-snowfall {
+  animation: snowfall 8s linear infinite;
+}
+
+/* Pulse animation for the button border */
+@keyframes pulse-ring {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Float animation for the scroll indicators */
+@keyframes float-y {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-float-y {
+  animation: float-y 1.4s ease-in-out infinite;
+}
+
+/* Glassmorphism utility card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark-glass-card {
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* Body global styles */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #121212; /* Ambient backing for desktop screen */
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Desktop backing ambient blur circles */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 30% 30%, #2a1f18 0%, #121212 70%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-circle-1 {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.08) 0%, transparent 70%);
+  filter: blur(50px);
+}
+
+.ambient-circle-2 {
+  position: absolute;
+  bottom: 15%;
+  right: 20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.05) 0%, transparent 70%);
+  filter: blur(60px);
+}
