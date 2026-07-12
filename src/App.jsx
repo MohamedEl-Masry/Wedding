@@ -1109,7 +1109,7 @@ function App() {
                 desc: "تتوفر منطقة ألعاب للأطفال",
               },
               {
-                iconClass: "fa-qrcode",
+                iconClass: "fa-square-parking",
                 title: "PARKING AVAILABLE",
                 desc: "متوفر مكان للسيارات",
               },
