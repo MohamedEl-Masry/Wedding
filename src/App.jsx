@@ -7,7 +7,7 @@ import {
 import waxSealImg from "./assets/ec509663f_1000046671.png";
 import heroBg from "./assets/hero section.png";
 import ornamentSeparator from "./assets/7a0be9725_6.svg";
-import howWeMetImg from "./assets/يوم فرحنا ان شاء الله.png";
+import howWeMetImg from "./assets/how_we_met copy يوم فرحنا ان شاء الله copy.png";
 import proposalImg from "./assets/proposal  1-1-2026.png";
 
 // Pre-populated guestbook wishes
@@ -16,11 +16,11 @@ const MOCK_WISHES = [
     id: "wish_1",
     guest_name: "Eisawy Salem",
     message:
-      "Congratulations! Wishing you a lifetime of love and happiness together.",
+      "مبروك يا حبيبي ربنا يرزقكم الذرية الصالحة ويحفظكم من العين والحسد يارب ❤️",
   },
   {
     id: "wish_2",
-    guest_name: "سلمى",
+    guest_name: "مريم",
     message:
       "بارك الله لكما وبارك عليكما وجمع بينكما في خير. ألف مبروك للعروسين!",
   },
@@ -29,13 +29,13 @@ const MOCK_WISHES = [
     guest_name: "Mohamed",
     message:
       "Congratulations to the beautiful couple! So happy to celebrate with you.",
-  },
-  {
+  }, {
     id: "wish_4",
     guest_name: "Kamel Elmasry",
     message:
       "ألف مبروك للعروسين، مع تمنياتي لكم بحياة زوجية سعيدة ومستقبل مشرق مليء بالحب والبهجة.",
   },
+
 ];
 
 // 1. Envelope Cover Component
