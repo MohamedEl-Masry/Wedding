@@ -1245,8 +1245,6 @@ function App() {
               height='100%'
               style={{
                 border: 0,
-                filter:
-                  "sepia(0.6) hue-rotate(15deg) saturate(1.15) brightness(0.95) contrast(0.95)",
               }}
               allowFullScreen=''
               loading='lazy'
