@@ -1320,7 +1320,7 @@ function App() {
           </div>
 
           {/* Wishes List (Guestbook) Wrapper with Elegant Frame */}
-          <div 
+          <div
             className='relative w-full max-w-sm mx-auto p-6 rounded-[28px] border-2 border-[#c5a880]/30 shadow-lg overflow-hidden bg-white/20 mt-2'
             style={{
               background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15))",
@@ -1362,9 +1362,9 @@ function App() {
                     WebkitBackdropFilter: "blur(10px)",
                   }}
                 >
-                  {/* Decorative quote marks watermarks */}
+                  {/* Decorative watermark and gold corner ornament */}
                   <i className="fa-solid fa-quote-left absolute top-3 left-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
-                  <i className="fa-solid fa-quote-right absolute bottom-3 right-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
+                  <GoldCornerOrnament className='absolute bottom-1 right-1 rotate-180 opacity-30 scale-[0.4] origin-bottom-right pointer-events-none' />
 
                   <p className='text-xs font-inter text-[#5a483a] italic leading-relaxed relative z-10 px-4'>
                     "{w.message}"
