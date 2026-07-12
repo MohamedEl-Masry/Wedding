@@ -800,7 +800,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-1 tracking-wide'>
             Our Love Story
           </h3>
-          <p className='text-[10px] font-inter text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em]'>
+          <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em]'>
             قصة حبنا
           </p>
 
@@ -839,7 +839,7 @@ function App() {
                 <h4 className='font-cinzel text-sm font-bold tracking-[0.2em] text-[#7d6447] uppercase mb-1 select-none'>
                   How We Met
                 </h4>
-                <p className='text-[10px] font-inter text-[#7d6447]/80 font-bold tracking-wider uppercase mb-4 select-none'>
+                <p className='text-[16px] font-inter text-[#7d6447]/80 font-bold tracking-wider uppercase mb-4 select-none'>
                   كيف التقينا
                 </p>
 
@@ -905,23 +905,20 @@ function App() {
                 </div>
 
                 <h4 className='font-cinzel text-sm font-bold tracking-[0.2em] text-[#7d6447] uppercase mb-1 select-none'>
-                  The Proposal
+                  Our Engagement
                 </h4>
-                <p className='text-[10px] font-inter text-[#7d6447]/80 font-bold tracking-wider uppercase mb-4 select-none'>
-                  طلب الزواج
+                <p className='text-[16px] font-inter text-[#7d6447]/80 font-bold tracking-wider uppercase mb-4 select-none'>
+                  الخطوبة
                 </p>
 
                 <p className='text-xs font-inter text-[#5a483a] leading-relaxed max-w-[260px] mx-auto'>
-                  "With a promise of forever and a ring that symbolizes our
-                  eternal bond, we decided to take the next step towards our
-                  lifetime journey together."
+                  "Our engagement was a chapter filled with love and anticipation, and today marks the beginning of the most beautiful chapter of our story."
                 </p>
                 <p
                   className='text-[11px] font-inter text-[#5a483a] leading-relaxed max-w-[260px] mx-auto mt-2 font-medium'
                   dir='rtl'
                 >
-                  "مع وعد بالأبدية وخاتم يرمز إلى رباطنا الأبدي، قررنا اتخاذ
-                  الخطوة التالية نحو رحلة حياتنا معًا."
+                  "كانت الخطوبة فصلًا امتلأ بالمودة والانتظار، وهذا اليوم هو بداية الفصل الأجمل من حكايتنا."
                 </p>
               </div>
             </div>
@@ -1001,7 +998,7 @@ function App() {
             <h3 className='font-cinzel text-[11px] font-bold tracking-[0.3em] text-[#7d6447] uppercase mb-1 select-none'>
               Event Program
             </h3>
-            <p className='text-[9px] font-inter text-[#7d6447]/80 uppercase tracking-widest mb-8 select-none'>
+            <p className='text-[16px] font-inter text-[#7d6447]/80 uppercase tracking-widest mb-8 select-none'>
               برنامج المناسبة
             </p>
 
@@ -1026,15 +1023,15 @@ function App() {
                     desc: "وصول الضيوف",
                   },
                   {
-                    time: "8:00 PM",
+                    time: "7:30 PM",
                     title: "Bridal Entrance",
                     desc: "زفة العروسين",
                   },
-                  { time: "8:30 PM", title: "Dinner", desc: "عشاء الحفل" },
+                  { time: "9:30 PM", title: "Dinner", desc: "عشاء الحفل" },
                   {
-                    time: "9:00 PM",
-                    title: "Celebration",
-                    desc: "الحفل والدي جي",
+                    time: "11:00 PM",
+                    title: "End of the Ceremony",
+                    desc: "انتهاء الحفل",
                   },
                 ].map((item, idx) => {
                   const isActive = activeTimeline.includes(idx);
@@ -1089,7 +1086,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-2 tracking-wide text-center'>
             Event Details
           </h3>
-          <p className='text-[10px] font-inter text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em] text-center'>
+          <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em] text-center'>
             تفاصيل الحفل
           </p>
 
@@ -1097,14 +1094,9 @@ function App() {
           <div className='w-full max-w-[340px] space-y-4'>
             {[
               {
-                iconClass: "fa-venus-mars",
-                title: "Segregated Event",
-                desc: "الحفل منفصل",
-              },
-              {
-                iconClass: "fa-qrcode",
-                title: "QR Code Entry Only",
-                desc: "الدخول بالرمز الرقمي",
+                iconClass: "fa-location-dot",
+                title: "Yasmin Hall / قاعة الياسمين",
+                desc: "بنادي المقاولون العرب - صلاح سالم - القاهرة",
               },
               {
                 iconClass: "fa-clock",
@@ -1115,6 +1107,11 @@ function App() {
                 iconClass: "fa-baby-carriage",
                 title: "Kids Area Available",
                 desc: "تتوفر منطقة ألعاب للأطفال",
+              },
+              {
+                iconClass: "fa-qrcode",
+                title: "PARKING AVAILABLE",
+                desc: "متوفر مكان للسيارات",
               },
             ].map((rule, idx) => {
               const isActive = activeRules.includes(idx);
