@@ -272,8 +272,8 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
               Wishes / تهنئة للعروسين
             </label>
             <textarea
-              rows='3'
-              placeholder='Write your congratulations...'
+              rows='4'
+              placeholder='Write your congratulations, wishes, or a nice prayer for the bride and groom... / اكتب تهنئتك، دعواتك الصادقة، أو كلمة طيبة للعروسين هنا...'
               className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/30 focus:outline-none focus:border-[#c5a880] bg-white/50 text-[#1a1a1a] resize-none'
               value={form.message}
               onChange={(e) =>
@@ -327,15 +327,14 @@ const RSVPSuccessOverlay = ({ isOpen, onClose }) => {
         </div>
 
         <h3 className='font-cinzel text-lg font-bold text-[#1a1a1a] mb-2 tracking-wide'>
-          RSVP Submitted!
+          RSVP &amp; Wishes Received!
         </h3>
         <p className='text-xs font-inter text-[#6b6b6b] uppercase tracking-widest mb-4'>
-          تم تأكيد حضورك بنجاح
+          تم تأكيد حضورك واستلام تهنئتك بنجاح
         </p>
 
-        <p className='text-sm font-inter text-[#6b6b6b] mb-6'>
-          Thank you for confirming your RSVP. We look forward to celebrating
-          with you!
+        <p className='text-sm font-inter text-[#6b6b6b] mb-6 leading-relaxed'>
+          Thank you for confirming your response and sharing your beautiful wishes. We look forward to celebrating with you!
         </p>
 
         <button
@@ -1301,13 +1300,21 @@ function App() {
           </div>
 
           {/* RSVP Button triggers Modal Form */}
-          <button
-            onClick={() => setRsvpModalOpen(true)}
-            className='px-8 py-3.5 mb-10 bg-[#7d6447] hover:bg-[#665139] text-white text-xs font-semibold rounded-full uppercase tracking-[0.2em] shadow-[0_8px_20px_rgba(125,100,71,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer'
-          >
-            <i className='fa-regular fa-bell'></i>
-            RSVP NOW / تأكيد الحضور
-          </button>
+          <div className='relative mb-2 group'>
+            {/* Pulsing ring to attract focus */}
+            <div className='absolute -inset-1 rounded-full border border-[#c5a880]/50 animate-pulse-ring pointer-events-none' />
+            <button
+              onClick={() => setRsvpModalOpen(true)}
+              className='relative px-8 py-3.5 bg-[#7d6447] hover:bg-[#665139] text-white text-xs font-semibold rounded-full uppercase tracking-[0.15em] shadow-[0_8px_20px_rgba(125,100,71,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer'
+            >
+              <i className='fa-regular fa-bell text-xs'></i>
+              RSVP &amp; Send Wishes / تأكيد الحضور والتهنئة
+            </button>
+          </div>
+
+          <p className='text-[10px] font-inter text-[#5a483a]/75 max-w-xs leading-relaxed mb-10 select-none'>
+            يسعدنا تسجيل حضوركم ومشاركتنا تهانيكم الصادقة للعروسين عبر هذا النموذج
+          </p>
 
           {/* Wishes List (Guestbook) */}
           <div className='w-full flex items-center justify-center gap-2 mb-4'>
@@ -1337,7 +1344,7 @@ function App() {
             {wishes.map((w) => (
               <div
                 key={w.id}
-                className='p-4 mb-4 border border-[#c5a880]/20 rounded-2xl text-center bg-white/20 hover:scale-[1.01] transition-transform duration-300 shadow-md'
+                className='p-4 mb-4 border border-[#c5a880]/20 rounded-2xl text-center bg-white/20 hover:scale-[1.01] transition-transform duration-300 shadow-md relative overflow-hidden group'
                 style={{
                   background:
                     "linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15))",
@@ -1345,10 +1352,14 @@ function App() {
                   WebkitBackdropFilter: "blur(10px)",
                 }}
               >
-                <p className='text-xs font-inter text-[#5a483a] italic leading-relaxed'>
+                {/* Decorative quote marks watermarks */}
+                <i className="fa-solid fa-quote-left absolute top-3 left-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
+                <i className="fa-solid fa-quote-right absolute bottom-3 right-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
+
+                <p className='text-xs font-inter text-[#5a483a] italic leading-relaxed relative z-10 px-4'>
                   "{w.message}"
                 </p>
-                <span className='text-[10px] font-cinzel text-[#7d6447] tracking-wider block font-bold mt-2'>
+                <span className='text-[10px] font-cinzel text-[#7d6447] tracking-wider block font-bold mt-2 relative z-10'>
                   — {w.guest_name}
                 </span>
               </div>
