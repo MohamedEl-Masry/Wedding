@@ -219,7 +219,7 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
             <input
               type='text'
               required
-              placeholder='e.g. John Doe'
+              placeholder='Full Name / الاسم بالكامل'
               className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/30 focus:outline-none focus:border-[#c5a880] focus:ring-1 focus:ring-[#c5a880] bg-white/50 text-[#1a1a1a]'
               value={form.name}
               onChange={(e) =>
@@ -1327,7 +1327,7 @@ function App() {
           {/* Wishes Scroll control buttons */}
           <button
             onClick={() => handleWishesScroll(-1)}
-            className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mb-2 animate-float-y'
+            className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mb-2 animate-float-y cursor-pointer'
           >
             <i className='fa-solid fa-chevron-up text-lg'></i>
           </button>
@@ -1368,7 +1368,7 @@ function App() {
 
           <button
             onClick={() => handleWishesScroll(1)}
-            className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mt-2'
+            className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mt-2 cursor-pointer'
           >
             <i className='fa-solid fa-chevron-down text-lg'></i>
           </button>
@@ -1487,6 +1487,6 @@ function App() {
 const venueName = "قاعة الياسمين";
 const venueAddress = "بنادي المقاولون العرب - صلاح سالم - القاهرة";
 const mapLocationUrl =
-  "https://www.google.com/maps/search/?api=1&query=%D9%86%D8%A7%D8%AF%D9%8A+%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%88%D9%84%D9%88%D9%86+%D8%A7%D9%84%D8%B9%D8%B1%D8%A8+%D9%82%D8%A7%D8%B9%D8%A9+%D8%A7%D9%84%D9%8A%D8%A7%D8%B3%D9%85%D9%8A%D9%86";
+  "https://maps.app.goo.gl/igSrmD5fEZSH7VVRA";
 
 export default App;
