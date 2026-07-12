@@ -421,7 +421,13 @@ function App() {
     const localRsvps = localStorage.getItem("wedding_rsvps");
     const localWishes = localStorage.getItem("wedding_wishes");
     if (localRsvps) {
-      const parsedRsvps = JSON.parse(localRsvps);
+      let parsedRsvps = JSON.parse(localRsvps);
+      // Clean up specific test entries if they exist
+      parsedRsvps = parsedRsvps.filter(
+        (r) => r.name !== "WEF" && r.name !== "محمد المصري"
+      );
+      localStorage.setItem("wedding_rsvps", JSON.stringify(parsedRsvps));
+
       const totalGuests = parsedRsvps.reduce(
         (acc, r) => acc + (r.guests || 1),
         210,
@@ -429,7 +435,15 @@ function App() {
       setAttendeesCount(totalGuests);
     }
     if (localWishes) {
-      const parsed = JSON.parse(localWishes);
+      let parsed = JSON.parse(localWishes);
+      // Clean up specific test entries if they exist
+      parsed = parsed.filter(
+        (w) =>
+          w.guest_name !== "WEF" &&
+          w.guest_name !== "محمد المصري" &&
+          w.message.trim() !== "fgsd"
+      );
+
       // Filter out any older mock wishes to ensure the latest ones from App.jsx are loaded
       const customWishes = parsed.filter(
         (w) => !MOCK_WISHES.some((mock) => mock.id === w.id)
