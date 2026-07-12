@@ -29,13 +29,13 @@ const MOCK_WISHES = [
     guest_name: "Mohamed",
     message:
       "Congratulations to the beautiful couple! So happy to celebrate with you.",
-  }, {
+  },
+  {
     id: "wish_4",
     guest_name: "Kamel Elmasry",
     message:
       "ألف مبروك للعروسين، مع تمنياتي لكم بحياة زوجية سعيدة ومستقبل مشرق مليء بالحب والبهجة.",
   },
-
 ];
 
 // 1. Envelope Cover Component
@@ -429,7 +429,14 @@ function App() {
       setAttendeesCount(totalGuests);
     }
     if (localWishes) {
-      setWishes(JSON.parse(localWishes));
+      const parsed = JSON.parse(localWishes);
+      // Filter out any older mock wishes to ensure the latest ones from App.jsx are loaded
+      const customWishes = parsed.filter(
+        (w) => !MOCK_WISHES.some((mock) => mock.id === w.id)
+      );
+      const combined = [...MOCK_WISHES, ...customWishes];
+      setWishes(combined);
+      localStorage.setItem("wedding_wishes", JSON.stringify(combined));
     } else {
       localStorage.setItem("wedding_wishes", JSON.stringify(MOCK_WISHES));
     }
@@ -728,10 +735,10 @@ function App() {
             </p>
 
             {/* Custom elegant gold separator */}
-            <div className="w-full flex items-center justify-center gap-3 my-6 select-none">
-              <div className="flex-1 h-[0.5px] bg-[#c5a880]/30" />
-              <i className="fa-solid fa-heart text-[#7d6447]/65 text-[11px] animate-pulse"></i>
-              <div className="flex-1 h-[0.5px] bg-[#c5a880]/30" />
+            <div className='w-full flex items-center justify-center gap-3 my-6 select-none'>
+              <div className='flex-1 h-[0.5px] bg-[#c5a880]/30' />
+              <i className='fa-solid fa-heart text-[#7d6447]/65 text-[11px] animate-pulse'></i>
+              <div className='flex-1 h-[0.5px] bg-[#c5a880]/30' />
             </div>
 
             {/* Time / Location details */}
