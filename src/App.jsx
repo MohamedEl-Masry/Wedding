@@ -1328,11 +1328,9 @@ function App() {
               WebkitBackdropFilter: "blur(10px)",
             }}
           >
-            {/* Elegant corner ornaments inside the frame */}
-            <GoldCornerOrnament className='absolute top-2 left-2 rotate-0 opacity-40 scale-[0.6] origin-top-left' />
-            <GoldCornerOrnament className='absolute top-2 right-2 rotate-90 opacity-40 scale-[0.6] origin-top-right' />
-            <GoldCornerOrnament className='absolute bottom-2 left-2 -rotate-90 opacity-40 scale-[0.6] origin-bottom-left' />
-            <GoldCornerOrnament className='absolute bottom-2 right-2 rotate-180 opacity-40 scale-[0.6] origin-bottom-right' />
+            {/* Elegant corner ornaments inside the frame - top-left and bottom-right diagonals */}
+            <GoldCornerOrnament className='absolute top-2 left-2 rotate-0 opacity-40 scale-[0.6] z-20 pointer-events-none' />
+            <GoldCornerOrnament className='absolute bottom-2 right-2 rotate-180 opacity-40 scale-[0.6] z-20 pointer-events-none' />
 
             {/* Wishes Scroll control buttons */}
             <button
@@ -1362,9 +1360,9 @@ function App() {
                     WebkitBackdropFilter: "blur(10px)",
                   }}
                 >
-                  {/* Decorative watermark and gold corner ornament */}
+                  {/* Decorative quote marks watermarks */}
                   <i className="fa-solid fa-quote-left absolute top-3 left-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
-                  <GoldCornerOrnament className='absolute bottom-1 right-1 rotate-180 opacity-30 scale-[0.4] origin-bottom-right pointer-events-none' />
+                  <i className="fa-solid fa-quote-right absolute bottom-3 right-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
 
                   <p className='text-xs font-inter text-[#5a483a] italic leading-relaxed relative z-10 px-4'>
                     "{w.message}"
