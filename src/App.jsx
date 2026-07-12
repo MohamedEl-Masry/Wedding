@@ -998,7 +998,7 @@ function App() {
             <h3 className='font-cinzel text-[11px] font-bold tracking-[0.3em] text-[#7d6447] uppercase mb-1 select-none'>
               Event Program
             </h3>
-            <p className='text-[16px] font-inter text-[#7d6447]/80 uppercase tracking-widest mb-8 select-none'>
+            <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 uppercase tracking-widest mb-8 select-none'>
               برنامج المناسبة
             </p>
 
@@ -1230,7 +1230,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-2 tracking-wide'>
             Location Map
           </h3>
-          <p className='text-[10px] font-inter text-[#7d6447]/80 mb-6 uppercase tracking-[0.2em]'>
+          <p className='text-[14px] font-inter font-bold text-[#7d6447]/80 mb-6 uppercase tracking-[0.2em]'>
             خريطة الموقع
           </p>
 
