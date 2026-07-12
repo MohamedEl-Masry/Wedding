@@ -329,7 +329,7 @@ const RSVPSuccessOverlay = ({ isOpen, onClose }) => {
         <h3 className='font-cinzel text-lg font-bold text-[#1a1a1a] mb-2 tracking-wide'>
           RSVP &amp; Wishes Received!
         </h3>
-        <p className='text-xs font-inter text-[#6b6b6b] uppercase tracking-widest mb-4'>
+        <p className='text-xs font-cairo text-[#6b6b6b] uppercase tracking-normal mb-4'>
           تم تأكيد حضورك واستلام تهنئتك بنجاح
         </p>
 
@@ -800,7 +800,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-1 tracking-wide'>
             Our Love Story
           </h3>
-          <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em]'>
+          <p className='text-[16px] font-cairo font-bold text-[#7d6447]/80 mb-10 uppercase tracking-normal'>
             قصة حبنا
           </p>
 
@@ -839,7 +839,7 @@ function App() {
                 <h4 className='font-cinzel text-sm font-bold tracking-[0.2em] text-[#7d6447] uppercase mb-1 select-none'>
                   How We Met
                 </h4>
-                <p className='text-[16px] font-inter text-[#7d6447]/80 font-bold tracking-wider uppercase mb-4 select-none'>
+                <p className='text-[16px] font-cairo text-[#7d6447]/80 font-bold tracking-normal uppercase mb-4 select-none'>
                   كيف التقينا
                 </p>
 
@@ -907,7 +907,7 @@ function App() {
                 <h4 className='font-cinzel text-sm font-bold tracking-[0.2em] text-[#7d6447] uppercase mb-1 select-none'>
                   Our Engagement
                 </h4>
-                <p className='text-[16px] font-inter text-[#7d6447]/80 font-bold tracking-wider uppercase mb-4 select-none'>
+                <p className='text-[16px] font-cairo text-[#7d6447]/80 font-bold tracking-normal uppercase mb-4 select-none'>
                   الخطوبة
                 </p>
 
@@ -998,7 +998,7 @@ function App() {
             <h3 className='font-cinzel text-[11px] font-bold tracking-[0.3em] text-[#7d6447] uppercase mb-1 select-none'>
               Event Program
             </h3>
-            <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 uppercase tracking-widest mb-8 select-none'>
+            <p className='text-[16px] font-cairo font-bold text-[#7d6447]/80 uppercase tracking-normal mb-8 select-none'>
               برنامج المناسبة
             </p>
 
@@ -1086,7 +1086,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-2 tracking-wide text-center'>
             Event Details
           </h3>
-          <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em] text-center'>
+          <p className='text-[16px] font-cairo font-bold text-[#7d6447]/80 mb-10 uppercase tracking-normal text-center'>
             تفاصيل الحفل
           </p>
 
@@ -1174,7 +1174,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-1 tracking-wide uppercase'>
             Bride &amp; Groom Message
           </h3>
-          <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em]'>
+          <p className='text-[16px] font-cairo font-bold text-[#7d6447]/80 mb-10 uppercase tracking-normal'>
             رسالة العروسين
           </p>
 
@@ -1230,7 +1230,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-2 tracking-wide'>
             Location Map
           </h3>
-          <p className='text-[14px] font-inter font-bold text-[#7d6447]/80 mb-6 uppercase tracking-[0.2em]'>
+          <p className='text-[14px] font-cairo font-bold text-[#7d6447]/80 mb-6 uppercase tracking-normal'>
             خريطة الموقع
           </p>
 
@@ -1303,11 +1303,11 @@ function App() {
               className='relative px-8 py-3.5 bg-[#7d6447] hover:bg-[#665139] text-white text-[12px] font-semibold rounded-full uppercase tracking-[0.15em] shadow-[0_8px_20px_rgba(125,100,71,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer'
             >
               <i className='fa-regular fa-bell text-xl'></i>
-              RSVP &amp; Send Wishes <br /> تأكيد الحضور والتهنئة
+              RSVP &amp; Send Wishes <br /> <span className='font-cairo tracking-normal block mt-0.5'>تأكيد الحضور والتهنئة</span>
             </button>
           </div>
 
-          <p className='text-[14px] font-inter text-[#5a483a]/75 max-w-xs leading-relaxed mb-10 select-none'>
+          <p className='text-[14px] font-cairo text-[#5a483a]/75 max-w-xs leading-relaxed mb-10 select-none tracking-normal'>
             يسعدنا تسجيل حضوركم ومشاركتنا تهانيكم الصادقة للعروسين عبر هذا النموذج
           </p>
 
@@ -1315,7 +1315,7 @@ function App() {
           <div className='w-full flex items-center justify-center gap-2 mb-4'>
             <i className='fa-regular fa-message text-[#7d6447] text-xs'></i>
             <span className='text-[16px] font-cinzel text-[#7d6447] tracking-widest uppercase font-bold select-none'>
-              Wishes / التهاني
+              Wishes / <span className='font-cairo tracking-normal'>التهاني</span>
             </span>
           </div>
 
@@ -1416,7 +1416,7 @@ function App() {
           <p className='text-[9.5px] font-cinzel text-[#7d6447] tracking-[0.2em] uppercase font-bold mb-1.5 select-none'>
             Thank you for sharing our joy
           </p>
-          <p className='text-[14px] font-inter text-[#5a483a]/80 font-medium select-none'>
+          <p className='text-[14px] font-cairo text-[#5a483a]/80 font-medium select-none tracking-normal'>
             شكرًا لمشاركتكم فرحتنا
           </p>
 
