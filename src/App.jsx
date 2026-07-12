@@ -1174,7 +1174,7 @@ function App() {
           <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-1 tracking-wide uppercase'>
             Bride &amp; Groom Message
           </h3>
-          <p className='text-[10px] font-inter text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em]'>
+          <p className='text-[16px] font-inter font-bold text-[#7d6447]/80 mb-10 uppercase tracking-[0.2em]'>
             رسالة العروسين
           </p>
 
@@ -1300,73 +1300,89 @@ function App() {
             <div className='absolute -inset-1 rounded-full border border-[#c5a880]/50 animate-pulse-ring pointer-events-none' />
             <button
               onClick={() => setRsvpModalOpen(true)}
-              className='relative px-8 py-3.5 bg-[#7d6447] hover:bg-[#665139] text-white text-xs font-semibold rounded-full uppercase tracking-[0.15em] shadow-[0_8px_20px_rgba(125,100,71,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer'
+              className='relative px-8 py-3.5 bg-[#7d6447] hover:bg-[#665139] text-white text-[12px] font-semibold rounded-full uppercase tracking-[0.15em] shadow-[0_8px_20px_rgba(125,100,71,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer'
             >
-              <i className='fa-regular fa-bell text-xs'></i>
-              RSVP &amp; Send Wishes / تأكيد الحضور والتهنئة
+              <i className='fa-regular fa-bell text-xl'></i>
+              RSVP &amp; Send Wishes <br /> تأكيد الحضور والتهنئة
             </button>
           </div>
 
-          <p className='text-[10px] font-inter text-[#5a483a]/75 max-w-xs leading-relaxed mb-10 select-none'>
+          <p className='text-[14px] font-inter text-[#5a483a]/75 max-w-xs leading-relaxed mb-10 select-none'>
             يسعدنا تسجيل حضوركم ومشاركتنا تهانيكم الصادقة للعروسين عبر هذا النموذج
           </p>
 
           {/* Wishes List (Guestbook) */}
           <div className='w-full flex items-center justify-center gap-2 mb-4'>
             <i className='fa-regular fa-message text-[#7d6447] text-xs'></i>
-            <span className='text-[10px] font-cinzel text-[#7d6447] tracking-widest uppercase font-bold select-none'>
+            <span className='text-[16px] font-cinzel text-[#7d6447] tracking-widest uppercase font-bold select-none'>
               Wishes / التهاني
             </span>
           </div>
 
-          {/* Wishes Scroll control buttons */}
-          <button
-            onClick={() => handleWishesScroll(-1)}
-            className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mb-2 animate-float-y cursor-pointer'
-          >
-            <i className='fa-solid fa-chevron-up text-lg'></i>
-          </button>
-
-          {/* Scrollable Guest wishes list wrapper */}
-          <div
-            ref={wishesScrollRef}
-            className='wishes-scroll w-full max-h-[300px] overflow-y-auto space-y-3 px-2 select-none'
+          {/* Wishes List (Guestbook) Wrapper with Elegant Frame */}
+          <div 
+            className='relative w-full max-w-sm mx-auto p-6 rounded-[28px] border-2 border-[#c5a880]/30 shadow-lg overflow-hidden bg-white/20 mt-2'
             style={{
-              scrollbarWidth: "none",
+              background: "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15))",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
             }}
           >
-            <style>{`.wishes-scroll::-webkit-scrollbar { display: none; }`}</style>
-            {wishes.map((w) => (
-              <div
-                key={w.id}
-                className='p-4 mb-4 border border-[#c5a880]/20 rounded-2xl text-center bg-white/20 hover:scale-[1.01] transition-transform duration-300 shadow-md relative overflow-hidden group'
-                style={{
-                  background:
-                    "linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15))",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                }}
-              >
-                {/* Decorative quote marks watermarks */}
-                <i className="fa-solid fa-quote-left absolute top-3 left-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
-                <i className="fa-solid fa-quote-right absolute bottom-3 right-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
+            {/* Elegant corner ornaments inside the frame */}
+            <GoldCornerOrnament className='absolute top-2 left-2 rotate-0 opacity-40 scale-[0.6] origin-top-left' />
+            <GoldCornerOrnament className='absolute top-2 right-2 rotate-90 opacity-40 scale-[0.6] origin-top-right' />
+            <GoldCornerOrnament className='absolute bottom-2 left-2 -rotate-90 opacity-40 scale-[0.6] origin-bottom-left' />
+            <GoldCornerOrnament className='absolute bottom-2 right-2 rotate-180 opacity-40 scale-[0.6] origin-bottom-right' />
 
-                <p className='text-xs font-inter text-[#5a483a] italic leading-relaxed relative z-10 px-4'>
-                  "{w.message}"
-                </p>
-                <span className='text-[10px] font-cinzel text-[#7d6447] tracking-wider block font-bold mt-2 relative z-10'>
-                  — {w.guest_name}
-                </span>
-              </div>
-            ))}
+            {/* Wishes Scroll control buttons */}
+            <button
+              onClick={() => handleWishesScroll(-1)}
+              className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mb-2 animate-float-y cursor-pointer block mx-auto'
+            >
+              <i className='fa-solid fa-chevron-up text-lg'></i>
+            </button>
+
+            {/* Scrollable Guest wishes list wrapper */}
+            <div
+              ref={wishesScrollRef}
+              className='wishes-scroll w-full max-h-[300px] overflow-y-auto space-y-3 px-2 select-none relative z-10'
+              style={{
+                scrollbarWidth: "none",
+              }}
+            >
+              <style>{`.wishes-scroll::-webkit-scrollbar { display: none; }`}</style>
+              {wishes.map((w) => (
+                <div
+                  key={w.id}
+                  className='p-4 mb-2 border border-[#c5a880]/20 rounded-2xl text-center bg-white/20 hover:scale-[1.01] transition-transform duration-300 shadow-sm relative overflow-hidden group'
+                  style={{
+                    background:
+                      "linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15))",
+                    backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
+                  }}
+                >
+                  {/* Decorative quote marks watermarks */}
+                  <i className="fa-solid fa-quote-left absolute top-3 left-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
+                  <i className="fa-solid fa-quote-right absolute bottom-3 right-4 text-[#c5a880]/10 text-xl pointer-events-none group-hover:scale-110 transition-transform"></i>
+
+                  <p className='text-xs font-inter text-[#5a483a] italic leading-relaxed relative z-10 px-4'>
+                    "{w.message}"
+                  </p>
+                  <span className='text-[10px] font-cinzel text-[#7d6447] tracking-wider block font-bold mt-2 relative z-10'>
+                    — {w.guest_name}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={() => handleWishesScroll(1)}
+              className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mt-2 cursor-pointer block mx-auto'
+            >
+              <i className='fa-solid fa-chevron-down text-lg'></i>
+            </button>
           </div>
-
-          <button
-            onClick={() => handleWishesScroll(1)}
-            className='text-[#7d6447] hover:text-[#5a483a] opacity-75 hover:opacity-100 transition-opacity mt-2 cursor-pointer'
-          >
-            <i className='fa-solid fa-chevron-down text-lg'></i>
-          </button>
         </section>
 
         {/* SECTION 10: FOOTER */}
@@ -1402,12 +1418,12 @@ function App() {
           <p className='text-[9.5px] font-cinzel text-[#7d6447] tracking-[0.2em] uppercase font-bold mb-1.5 select-none'>
             Thank you for sharing our joy
           </p>
-          <p className='text-[11px] font-inter text-[#5a483a]/80 font-medium select-none'>
+          <p className='text-[14px] font-inter text-[#5a483a]/80 font-medium select-none'>
             شكرًا لمشاركتكم فرحتنا
           </p>
 
           {/* Wed Date */}
-          <span className='text-[9px] font-cinzel text-[#c5a880] tracking-[0.3em] block mt-8 select-none'>
+          <span className='text-[14px] font-bold font-cinzel text-[#c5a880] tracking-[0.3em] block mt-8 select-none'>
             04.08.2026
           </span>
         </footer>
