@@ -164,7 +164,7 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.name.trim()) return;
+    if (!form.name.trim() || !form.message.trim()) return;
     onSubmit(form);
   };
 
@@ -195,32 +195,32 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className='absolute top-4 right-4 text-[#6b6b6b] hover:text-[#1a1a1a] transition-colors z-50 text-lg w-8 h-8 rounded-full flex items-center justify-center bg-[#c5a880]/10'
+          className='absolute top-4 right-4 text-[#7d6447]/70 hover:text-[#7d6447] transition-colors z-50 text-lg w-8 h-8 rounded-full flex items-center justify-center bg-[#c5a880]/15 hover:bg-[#c5a880]/30 cursor-pointer'
         >
           <i className='fa-solid fa-xmark'></i>
         </button>
 
-        <h3 className='font-cinzel text-xl font-semibold text-[#1a1a1a] mb-2 tracking-wide mt-2'>
+        <h3 className='font-cinzel text-xl font-semibold text-[#7d6447] mb-2 tracking-wide mt-2'>
           Confirm Attendance
         </h3>
-        <p className='text-xs font-inter text-[#6b6b6b] mb-6 uppercase tracking-widest'>
+        <p className='text-[14px] font-cairo font-bold text-[#7d6447]/80 mb-6 uppercase tracking-normal'>
           تأكيد الحضور
         </p>
 
         <form
           onSubmit={handleSubmit}
-          className='space-y-4 text-left font-inter'
+          className='space-y-4 text-left font-cairo'
         >
           {/* Name Input */}
           <div>
-            <label className='block text-[11px] font-semibold text-[#6b6b6b] uppercase tracking-wider mb-1'>
+            <label className='block text-[11.5px] font-semibold text-[#7d6447] tracking-wide mb-1.5'>
               Your Name / الاسم بالكامل
             </label>
             <input
               type='text'
               required
               placeholder='Full Name / الاسم بالكامل'
-              className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/30 focus:outline-none focus:border-[#c5a880] focus:ring-1 focus:ring-[#c5a880] bg-white/50 text-[#1a1a1a]'
+              className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/40 focus:outline-none focus:border-[#7d6447] focus:ring-1 focus:ring-[#7d6447] bg-white/60 text-[#5a483a] font-cairo placeholder-[#5a483a]/40'
               value={form.name}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, name: e.target.value }))
@@ -230,11 +230,11 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
 
           {/* Attendance Selection */}
           <div>
-            <label className='block text-[11px] font-semibold text-[#6b6b6b] uppercase tracking-wider mb-1'>
+            <label className='block text-[11.5px] font-semibold text-[#7d6447] tracking-wide mb-1.5'>
               Attendance / الحضور
             </label>
             <select
-              className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/30 focus:outline-none focus:border-[#c5a880] bg-white/50 text-[#1a1a1a]'
+              className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/40 focus:outline-none focus:border-[#7d6447] bg-white/60 text-[#5a483a] font-cairo'
               value={form.attendance}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, attendance: e.target.value }))
@@ -250,14 +250,14 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
           {/* Guest Count */}
           {form.attendance === "yes" && (
             <div>
-              <label className='block text-[11px] font-semibold text-[#6b6b6b] uppercase tracking-wider mb-1'>
+              <label className='block text-[11.5px] font-semibold text-[#7d6447] tracking-wide mb-1.5'>
                 Number of Guests / عدد المرافقين
               </label>
               <input
                 type='number'
                 min='1'
                 required
-                className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/30 focus:outline-none focus:border-[#c5a880] bg-white/50 text-[#1a1a1a]'
+                className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/40 focus:outline-none focus:border-[#7d6447] bg-white/60 text-[#5a483a] font-cairo'
                 value={form.guests}
                 onChange={(e) =>
                   setForm((prev) => ({ ...prev, guests: e.target.value }))
@@ -268,13 +268,14 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
 
           {/* Message / Wishes */}
           <div>
-            <label className='block text-[11px] font-semibold text-[#6b6b6b] uppercase tracking-wider mb-1'>
+            <label className='block text-[11.5px] font-semibold text-[#7d6447] tracking-wide mb-1.5'>
               Wishes / تهنئة للعروسين
             </label>
             <textarea
               rows='4'
+              required
               placeholder='Write your congratulations, wishes, or a nice prayer for the bride and groom... / اكتب تهنئتك، دعواتك الصادقة، أو كلمة طيبة للعروسين هنا...'
-              className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/30 focus:outline-none focus:border-[#c5a880] bg-white/50 text-[#1a1a1a] resize-none'
+              className='w-full px-4 py-2.5 text-sm rounded-xl border border-[#c5a880]/40 focus:outline-none focus:border-[#7d6447] bg-white/60 text-[#5a483a] resize-none font-cairo placeholder-[#5a483a]/40'
               value={form.message}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, message: e.target.value }))
@@ -286,7 +287,7 @@ const RSVPModal = ({ isOpen, onClose, onSubmit, isPending }) => {
           <button
             type='submit'
             disabled={isPending}
-            className='w-full py-3 mt-4 text-xs font-semibold text-white bg-[#1a1a1a] hover:bg-[#2d2d2d] transition-colors rounded-full flex items-center justify-center gap-2 uppercase tracking-[0.2em] shadow-md disabled:opacity-50'
+            className='w-full py-3.5 mt-4 text-xs font-bold text-white bg-[#7d6447] hover:bg-[#665139] transition-all duration-300 rounded-full flex items-center justify-center gap-2 uppercase tracking-[0.2em] shadow-[0_8px_20px_rgba(125,100,71,0.3)] hover:scale-[1.02] active:scale-95 disabled:opacity-50 cursor-pointer font-cinzel'
           >
             <i className='fa-regular fa-paper-plane'></i>
             {isPending ? "Submitting..." : "Submit RSVP"}
@@ -322,24 +323,24 @@ const RSVPSuccessOverlay = ({ isOpen, onClose }) => {
         <GoldCornerOrnament className='absolute bottom-2 left-2 -rotate-90 opacity-50 scale-75' />
         <GoldCornerOrnament className='absolute bottom-2 right-2 rotate-180 opacity-50 scale-75' />
 
-        <div className='w-16 h-16 bg-green-50 text-green-500 border border-green-200 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl'>
+        <div className='w-16 h-16 bg-[#7d6447]/10 text-[#7d6447] border border-[#c5a880]/30 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl'>
           <i className='fa-solid fa-check'></i>
         </div>
 
-        <h3 className='font-cinzel text-lg font-bold text-[#1a1a1a] mb-2 tracking-wide'>
+        <h3 className='font-cinzel text-lg font-bold text-[#7d6447] mb-2 tracking-wide'>
           RSVP &amp; Wishes Received!
         </h3>
-        <p className='text-xs font-cairo text-[#6b6b6b] uppercase tracking-normal mb-4'>
+        <p className='text-xs font-cairo text-[#5a483a]/80 mb-4'>
           تم تأكيد حضورك واستلام تهنئتك بنجاح
         </p>
 
-        <p className='text-sm font-inter text-[#6b6b6b] mb-6 leading-relaxed'>
+        <p className='text-sm font-cairo text-[#5a483a]/90 mb-6 leading-relaxed'>
           Thank you for confirming your response and sharing your beautiful wishes. We look forward to celebrating with you!
         </p>
 
         <button
           onClick={onClose}
-          className='px-8 py-2.5 bg-[#1a1a1a] hover:bg-[#2d2d2d] text-white text-xs font-semibold rounded-full uppercase tracking-[0.2em] shadow-md transition-colors'
+          className='px-8 py-2.5 bg-[#7d6447] hover:bg-[#665139] text-white text-xs font-semibold rounded-full uppercase tracking-[0.2em] shadow-[0_8px_20px_rgba(125,100,71,0.25)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer font-cinzel'
         >
           Close
         </button>
