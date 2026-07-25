@@ -416,13 +416,54 @@ function App() {
     return () => clearInterval(timerInterval);
   }, []);
 
+  // Supabase Database credentials (non-sensitive client-side keys)
+  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "https://rvgcuecsvmaegwenwpnv.supabase.co";
+  const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || "sb_publishable_Z81D-qZAA7fSBulS8UI39w_QlMvDPJv";
+
+  // Fetch live wishes and RSVPs from Supabase
+  const fetchSupabaseData = async () => {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rsvps?select=*&order=created_at.desc`, {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      });
+      if (!res.ok) throw new Error("Failed to fetch");
+      const data = await res.json();
+
+      // Filter wishes (where message is not empty and name is not "trge")
+      const liveWishes = data
+        .filter((item) => item.message && item.message.trim() && item.name.toLowerCase() !== "trge")
+        .map((item) => ({
+          id: item.id,
+          guest_name: item.name,
+          message: item.message,
+        }));
+
+      // Calculate total attending guests (base is 210)
+      const attendingGuestsSum = data
+        .filter((item) => item.attendance === "yes" && item.name.toLowerCase() !== "trge")
+        .reduce((acc, item) => acc + (Number(item.guests) || 1), 0);
+
+      setAttendeesCount(210 + attendingGuestsSum);
+
+      // Combine with local mock wishes (mock wishes first)
+      setWishes([...MOCK_WISHES, ...liveWishes]);
+    } catch (err) {
+      console.error("Error loading data from Supabase:", err);
+    }
+  };
+
   // Fetch local RSVPs and Wishes on mount
   useEffect(() => {
+    fetchSupabaseData();
+
+    // Clean up local storage "trge" entries if they exist
     const localRsvps = localStorage.getItem("wedding_rsvps");
     const localWishes = localStorage.getItem("wedding_wishes");
     if (localRsvps) {
       let parsedRsvps = JSON.parse(localRsvps);
-      // Clean up specific test entries if they exist
       parsedRsvps = parsedRsvps.filter(
         (r) =>
           r.name !== "WEF" &&
@@ -430,16 +471,9 @@ function App() {
           r.name.toLowerCase() !== "trge"
       );
       localStorage.setItem("wedding_rsvps", JSON.stringify(parsedRsvps));
-
-      const totalGuests = parsedRsvps.reduce(
-        (acc, r) => acc + (r.guests || 1),
-        210,
-      );
-      setAttendeesCount(totalGuests);
     }
     if (localWishes) {
       let parsed = JSON.parse(localWishes);
-      // Clean up specific test entries if they exist
       parsed = parsed.filter(
         (w) =>
           w.guest_name !== "WEF" &&
@@ -447,16 +481,7 @@ function App() {
           w.guest_name.toLowerCase() !== "trge" &&
           w.message.trim() !== "fgsd"
       );
-
-      // Filter out any older mock wishes to ensure the latest ones from App.jsx are loaded
-      const customWishes = parsed.filter(
-        (w) => !MOCK_WISHES.some((mock) => mock.id === w.id)
-      );
-      const combined = [...MOCK_WISHES, ...customWishes];
-      setWishes(combined);
-      localStorage.setItem("wedding_wishes", JSON.stringify(combined));
-    } else {
-      localStorage.setItem("wedding_wishes", JSON.stringify(MOCK_WISHES));
+      localStorage.setItem("wedding_wishes", JSON.stringify(parsed));
     }
   }, []);
 
@@ -547,10 +572,53 @@ function App() {
   };
 
   // Submit RSVP Form handler
-  const handleRsvpSubmit = (formData) => {
+  const handleRsvpSubmit = async (formData) => {
     setRsvpPending(true);
-    setTimeout(() => {
-      // 1. Save RSVP
+    try {
+      // 1. Post RSVP to Supabase database
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/rsvps`, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+          "Prefer": "return=representation"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          attendance: formData.attendance,
+          guests: Number(formData.guests || 1),
+          message: formData.message
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Supabase insertion failed");
+      }
+
+      // 2. Fetch latest data to update list and counts in real-time
+      await fetchSupabaseData();
+
+      // 3. Keep local storage backup cache
+      const localRsvps = localStorage.getItem("wedding_rsvps") || "[]";
+      const parsedRsvps = JSON.parse(localRsvps);
+      parsedRsvps.push({
+        id: `rsvp_${Date.now()}`,
+        name: formData.name,
+        attendance: formData.attendance,
+        guests: Number(formData.guests || 1),
+        message: formData.message,
+        date: new Date().toISOString(),
+      });
+      localStorage.setItem("wedding_rsvps", JSON.stringify(parsedRsvps));
+
+      setRsvpPending(false);
+      setRsvpModalOpen(false);
+      setRsvpSuccessOpen(true);
+    } catch (err) {
+      console.error("Database connection issue. Falling back to local storage:", err);
+
+      // Local storage fallback logic
       const localRsvps = localStorage.getItem("wedding_rsvps") || "[]";
       const parsedRsvps = JSON.parse(localRsvps);
       const newRsvp = {
@@ -564,7 +632,6 @@ function App() {
       parsedRsvps.push(newRsvp);
       localStorage.setItem("wedding_rsvps", JSON.stringify(parsedRsvps));
 
-      // 2. Add Wish if message text area is populated
       if (formData.message.trim()) {
         const localWishes = localStorage.getItem("wedding_wishes") || "[]";
         const parsedWishes = JSON.parse(localWishes);
@@ -575,10 +642,9 @@ function App() {
         };
         parsedWishes.push(newWish);
         localStorage.setItem("wedding_wishes", JSON.stringify(parsedWishes));
-        setWishes(parsedWishes);
+        setWishes([...MOCK_WISHES, ...parsedWishes.filter(w => !MOCK_WISHES.some(m => m.id === w.id))]);
       }
 
-      // Update counters
       const updatedAttendees = parsedRsvps.reduce(
         (acc, r) => acc + (r.guests || 1),
         210,
@@ -588,7 +654,7 @@ function App() {
       setRsvpPending(false);
       setRsvpModalOpen(false);
       setRsvpSuccessOpen(true);
-    }, 1000);
+    }
   };
 
   // Calendar Event .ics downloader
