@@ -424,7 +424,10 @@ function App() {
       let parsedRsvps = JSON.parse(localRsvps);
       // Clean up specific test entries if they exist
       parsedRsvps = parsedRsvps.filter(
-        (r) => r.name !== "WEF" && r.name !== "محمد المصري"
+        (r) =>
+          r.name !== "WEF" &&
+          r.name !== "محمد المصري" &&
+          r.name.toLowerCase() !== "trge"
       );
       localStorage.setItem("wedding_rsvps", JSON.stringify(parsedRsvps));
 
@@ -441,6 +444,7 @@ function App() {
         (w) =>
           w.guest_name !== "WEF" &&
           w.guest_name !== "محمد المصري" &&
+          w.guest_name.toLowerCase() !== "trge" &&
           w.message.trim() !== "fgsd"
       );
 
